@@ -1,0 +1,22 @@
+# install pkgconf for install st
+sudo moused -p /dev/sysmouse auto                   # enable mouse
+echo moused_enable="YES" >> /etc/rc.conf
+ehco keymap="keyboardname" >> /etc/rc.conf          # change console keyboard layout
+    # keyboardname in /usr/share/vt/keymaps/
+
+sudo service devfs restart                          # enable sound 
+
+
+### Access mysql
+service mysql-server stop
+sysrc mysql_args="--skip-grant-tables"
+mysql -u root -p
+FLUSH PRIVILEGES;
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'newpassword';
+
+
+
+pkg delete -xi # remove completely
+# restart networkd: service netif restart
+# change ip: ifconfig wlan0 inet 192.168.x.x netmask 255.255.255.0 && dhclient wlan0
+# check nic: sysctl net.wlan.devices
