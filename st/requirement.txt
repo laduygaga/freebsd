@@ -1,2 +1,1 @@
-# export TERM="st-256color"
 ncurses
