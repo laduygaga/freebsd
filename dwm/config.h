@@ -1,3 +1,4 @@
+#include <X11/XF86keysym.h>
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -26,9 +27,15 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	/* class				instance    title       tags mask     isfloating   monitor */
+	{ "qutebrowser",		NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "TelegramDesktop",    NULL,       NULL,       1 << 7,       0,		   -1 },
+	{ "Gimp",				NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",  			NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Zathura",			NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Evince",        		NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "FBReader",      		NULL,       NULL,       1 << 8,       0,           -1 },
+
 };
 
 /* layout(s) */
@@ -70,6 +77,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ 0,	                XF86XK_AudioMute,			spawn,	SHCMD("pactl set-sink-mute 0 toggle") },
+	{ 0,	                XF86XK_AudioRaiseVolume,    spawn,	SHCMD("pactl set-sink-volume 0 +5%") },
+	{ 0,	                XF86XK_AudioLowerVolume,    spawn,	SHCMD("pactl set-sink-volume 0 -5%") },
 	{ MODKEY,                       XK_space,  zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,						XK_q,      killclient,     {0} },
