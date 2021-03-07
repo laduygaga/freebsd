@@ -37,6 +37,9 @@ static const Rule rules[] = {
 	{ "Zathura",			NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "Evince",        		NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "FBReader",      		NULL,       NULL,       1 << 8,       0,           -1 },
+	{ NULL,					NULL,	   "trans",		0,			  1,           -1 },					 // urxvt
+
+
 
 };
 
@@ -82,6 +85,10 @@ static Key keys[] = {
 	{ 0,	                XF86XK_AudioMute,			spawn,	SHCMD("pactl set-sink-mute 0 toggle") },
 	{ 0,	                XF86XK_AudioRaiseVolume,    spawn,	SHCMD("pactl set-sink-volume 0 +5%") },
 	{ 0,	                XF86XK_AudioLowerVolume,    spawn,	SHCMD("pactl set-sink-volume 0 -5%") },
+	{ MODKEY,				XK_period,		            spawn,	SHCMD("urxvt_trans.sh") },
+	{ MODKEY,				XK_z,						spawn,	SHCMD("urxvt_trans.sh") },
+	{ MODKEY|ShiftMask,		XK_period,		            spawn,	SHCMD("urxvt -e trans :vi -b --shell") },
+
 	{ MODKEY,                       XK_space,  zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,						XK_q,      killclient,     {0} },
